@@ -8,6 +8,12 @@ def maximo_encadenado(a: float, b: float, c: float) -> float:
     Referencia: https://docs.python.org/3/reference/expressions.html#comparisons
     """
     pass # Completar
+    if a >= b >= c or a >= c >= b:
+        return a
+    elif b >= a >= c or b >= c >= a:
+        return b
+    else:
+        return c
 
 
 # NO MODIFICAR - INICIO
@@ -25,6 +31,7 @@ def maximo_cuadruple(a: float, b: float, c: float, d: float) -> float:
 
     Referencia: https://docs.python.org/3/library/functions.html#max"""
     pass # Completar
+    return max(a,b,c,d)
 
 
 # NO MODIFICAR - INICIO
@@ -43,6 +50,7 @@ def maximo_arbitrario(*args) -> float:
     Referencia: https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists
     """
     pass # Completar
+    return max(args)
 
 
 # NO MODIFICAR - INICIO
@@ -59,6 +67,10 @@ assert maximo_arbitrario(24, 9, 18, 30) == 30
 def maximo_recursivo(*args) -> float:
     """Re-Escribir de forma recursiva."""
     pass # Completar
+    if len(args) == 1:
+        return args[0]
+    else:
+        return max(args[0], maximo_recursivo(*args[1:]))
 
 
 # NO MODIFICAR - INICIO
