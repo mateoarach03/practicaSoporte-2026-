@@ -10,6 +10,15 @@ def superposicion_basico(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool
     Restricción: Utilizar bucles anidados.
     """
     pass # Completar
+    flag = False
+    while flag == False:
+        for i in range(len(lista_1)):
+            for j in range(len(lista_2)):
+                if lista_1[i] == lista_2[j]:
+                    flag = True
+    return flag
+    
+
 
 
 # NO MODIFICAR - INICIO
@@ -25,6 +34,11 @@ assert not superposicion_basico(test_list, (2, "world", 30.85))
 def superposicion_in(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool:
     """Re-Escribir utilizando un sólo bucle y el operador IN."""
     pass # Completar
+    flag = False
+    for i in range (len(lista_1)):
+        if lista_1[i] in lista_2[i]:
+            flag = True
+    return flag
 
 
 # NO MODIFICAR - INICIO
@@ -42,6 +56,8 @@ def superposicion_any(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool:
     Referencia: https://docs.python.org/3/library/functions.html#any
     """
     pass # Completar
+    return any(x in lista_1 for x in lista_2)
+
 
 
 # NO MODIFICAR - INICIO
@@ -59,6 +75,8 @@ def superposicion_set(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool:
     Referencia: https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset
     """
     pass # Completar
+    flag = set(lista_1) & set(lista_2)
+    return flag
 
 
 # NO MODIFICAR - INICIO

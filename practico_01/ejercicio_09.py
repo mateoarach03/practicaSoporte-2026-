@@ -1,3 +1,4 @@
+from functools import reduce
 """FOR, Sum, Reduce."""
 
 
@@ -6,7 +7,13 @@ def sumatoria_basico(n: int) -> int:
 
     Restricción: Utilizar un bucle for.
     """
-    pass # Completar
+    pass # Completar]
+    suma = 0
+    for i in range (n):
+        suma = suma + (i+1)
+    return suma
+
+
 
 
 # NO MODIFICAR - INICIO
@@ -23,7 +30,8 @@ def sumatoria_sum(n: int) -> int:
     Referencia: https://docs.python.org/3/library/functions.html#sum
     """
     pass # Completar
-
+    resultado = sum(range(1, n+1))
+    return resultado
 
 # NO MODIFICAR - INICIO
 assert sumatoria_sum(1) == 1
@@ -42,6 +50,9 @@ def sumatoria_reduce(n: int) -> int:
     Referencia: https://docs.python.org/3/library/functools.html#functools.reduce
     """
     pass # Completar
+    numeros = range(1, n + 1)
+    resultado = reduce(lambda x, y: x + y, numeros)
+    return resultado
 
 
 # NO MODIFICAR - INICIO
@@ -59,6 +70,8 @@ def sumatoria_gauss(n: int) -> int:
     Referencia: https://es.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF
     """
     pass # Completar
+    resultado = (n * (n+1)) // 2
+    return resultado
 
 
 # NO MODIFICAR - INICIO

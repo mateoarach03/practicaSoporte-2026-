@@ -11,7 +11,13 @@ def suma_cubo_pares_for(numeros: Iterable[int]) -> int:
     separar los pares.
     """
     pass # Completar
-
+    cuadrados = []
+    for i in range (len(numeros)):
+        cuadrados[i] = numeros[i]**3
+    for j in range (len(cuadrados)):
+            if cuadrados[i] % 2 == 0:
+                suma = suma + cuadrados
+    return suma
 
 # NO MODIFICAR - INICIO
 assert suma_cubo_pares_for([1, 2, 3, 4, 5, 6]) == 288
@@ -29,6 +35,8 @@ def suma_cubo_pares_sum_list(numeros: Iterable[int]) -> int:
     Referencia: https://docs.python.org/3/library/functions.html#sum
     """
     pass # Completar
+    return sum([n**3 for n in numeros if (n**3) % 2 == 0])
+    
 
 
 # NO MODIFICAR - INICIO
@@ -45,6 +53,7 @@ def suma_cubo_pares_sum_gen(numeros: Iterable[int]) -> int:
     Referencia: https://docs.python.org/3/reference/expressions.html#generator-expressions
     """
     pass # Completar
+    return sum(n**3 for n in numeros if (n**3) % 2 == 0)
 
 
 # NO MODIFICAR - INICIO
@@ -64,25 +73,40 @@ numeros = [1, 2, 3, 4, 5, 6]
 
 # Escribir una función lambda que eleve los elementos al cubo
 
-numeros_al_cubo = # Completar
+numeros_al_cubo = [n**3 for n in numeros ]
 
 
 # Escribir una función lambda que permita filtrar todos los elementos pares
 
-numeros_al_cubo_pares = # Completar
+numeros_al_cubo_pares = [n**3 for n in numeros if (n**3) % 2 == 0]
 
 
 # Escribir una función Lambda que sume todos los elementos
 
 from functools import reduce
 
-suma_numeros_al_cubo_pares = # Completar
+def suma_numeros_al_cubo_pares(numeros: Iterable[int]) -> int:
+    for i in range (len(numeros)):
+        cubos = numeros[i]**3
+    for j in range (len(cubos)):
+        if cubos[i] % 2 == 0:
+            suma = suma + cubos[i]
+    return suma
+    
 
 
 # Escribir una función Lambda que permita ordenar los elementos de la numeros
 # en base a si son pares o impares
 
-numeros_ordenada = # Completar
+def numeros_ordenada( numeros: Iterable[int]) -> list[int]:
+    ordenado = []
+    for i in range (len(numeros)):
+        if numeros[i] % 2 == 0:
+            ordenado.append(numeros[i])
+    for j in range (len(numeros)):
+        if numeros [i] % 2 != 0:
+            ordenado.append(numeros[i])
+
 
 # NO MODIFICAR - INICIO
 assert numeros_al_cubo == [1, 8, 27, 64, 125, 216]
