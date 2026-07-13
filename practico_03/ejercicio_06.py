@@ -17,6 +17,17 @@ class Article:
     # NO MODIFICAR - FIN
 
     # Completar
+    def __repr__(self) -> str:
+        return f'Article({self.name!r})'
+
+    def __str__(self) -> str:
+        return self.name
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Article):
+            return NotImplemented
+
+        return self.name == other.name
 
 
 # NO MODIFICAR - INICIO
@@ -50,6 +61,20 @@ class ShoppingCart:
     # NO MODIFICAR - FIN
 
     # Completar
+    def __str__(self) -> str:
+        return str([article.name for article in self.articles])
+
+    def __repr__(self) -> str:
+        return f"ShoppingCart({self.articles!r})"
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, ShoppingCart):
+            return NotImplemented
+
+        return sorted(article.name for article in self.articles) == sorted(article.name for article in other.articles)
+
+    def __add__(self, other: ShoppingCart) -> ShoppingCart:
+        return ShoppingCart(self.articles + other.articles)
 
 
 # NO MODIFICAR - INICIO

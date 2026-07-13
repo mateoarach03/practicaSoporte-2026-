@@ -1,13 +1,22 @@
 """Base de Datos SQL - Alta"""
 
 import datetime
-from practico_04.ejercicio_01 import reset_tabla
+
+from practico_04.ejercicio_01 import _conectar, reset_tabla
 
 
 def agregar_persona(nombre, nacimiento, dni, altura):
     """Implementar la funcion agregar_persona, que inserte un registro en la 
     tabla Persona y devuelva los datos ingresados el id del nuevo registro."""
-    pass # Completar
+    with _conectar() as conexion:
+        cursor = conexion.execute(
+            """
+            INSERT INTO Persona (Nombre, FechaNacimiento, DNI, Altura)
+            VALUES (?, ?, ?, ?)
+            """,
+            (nombre, nacimiento, dni, altura),
+        )
+        return cursor.lastrowid
 
 
 # NO MODIFICAR - INICIO

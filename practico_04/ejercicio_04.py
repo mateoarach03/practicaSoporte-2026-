@@ -2,7 +2,7 @@
 
 import datetime
 
-from practico_04.ejercicio_01 import reset_tabla
+from practico_04.ejercicio_01 import _conectar, reset_tabla
 from practico_04.ejercicio_02 import agregar_persona
 
 
@@ -11,7 +11,21 @@ def buscar_persona(id_persona):
     persona basado en su id. El return es una tupla que contiene sus campos: 
     id, nombre, nacimiento, dni y altura. Si no encuentra ningun registro, 
     devuelve False."""
-    pass # Completar
+    with _conectar() as conexion:
+        cursor = conexion.execute(
+            """
+            SELECT IdPersona, Nombre, FechaNacimiento, DNI, Altura
+            FROM Persona
+            WHERE IdPersona = ?
+            """,
+            (id_persona,),
+        )
+        persona = cursor.fetchone()
+
+    if persona is None:
+        return False
+
+    return persona
 
 
 # NO MODIFICAR - INICIO

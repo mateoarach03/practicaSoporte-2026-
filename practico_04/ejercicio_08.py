@@ -3,6 +3,7 @@
 import datetime
 
 from practico_04.ejercicio_02 import agregar_persona
+from practico_04.ejercicio_01 import _conectar
 from practico_04.ejercicio_06 import reset_tabla
 from practico_04.ejercicio_07 import agregar_peso
 
@@ -30,7 +31,34 @@ def listar_pesos(id_persona):
 
     - False en caso de no cumplir con alguna validacion.
     """
-    return []
+    with _conectar() as conexion:
+        cursor = conexion.execute(
+            "SELECT 1 FROM Persona WHERE IdPersona = ?",
+            (id_persona,),
+        )
+        if cursor.fetchone() is None:
+            return False
+
+        cursor = conexion.execute(
+            """
+            SELECT Fecha, Peso
+            FROM PersonaPeso
+            WHERE IdPersona = ?
+            ORDER BY Fecha ASC
+            """,
+            (id_persona,),
+        )
+        pesos = cursor.fetchall()
+
+    resultado = []
+    for fecha, peso in pesos:
+        if hasattr(fecha, "strftime"):
+            fecha_formateada = fecha.strftime("%Y-%m-%d")
+        else:
+            fecha_formateada = datetime.datetime.fromisoformat(str(fecha)).strftime("%Y-%m-%d")
+        resultado.append((fecha_formateada, peso))
+
+    return resultado
 
 
 # NO MODIFICAR - INICIO

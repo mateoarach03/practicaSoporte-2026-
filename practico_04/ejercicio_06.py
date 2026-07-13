@@ -1,6 +1,6 @@
 """Base de Datos SQL - Creación de tablas auxiliares"""
 
-from practico_04.ejercicio_01 import borrar_tabla, crear_tabla
+from practico_04.ejercicio_01 import _conectar, borrar_tabla, crear_tabla
 
 
 def crear_tabla_peso():
@@ -9,13 +9,25 @@ def crear_tabla_peso():
         - Fecha: Date()
         - Peso: Int()
     """
-    pass # Completar
+    with _conectar() as conexion:
+        conexion.execute("DROP TABLE IF EXISTS PersonaPeso")
+        conexion.execute(
+            """
+            CREATE TABLE PersonaPeso (
+                IdPersona INTEGER,
+                Fecha TIMESTAMP,
+                Peso INTEGER,
+                FOREIGN KEY (IdPersona) REFERENCES Persona(IdPersona)
+            )
+            """
+        )
 
 
 def borrar_tabla_peso():
     """Implementar la funcion borrar_tabla, que borra la tabla creada 
     anteriormente."""
-    pass # Completar
+    with _conectar() as conexion:
+        conexion.execute("DROP TABLE IF EXISTS PersonaPeso")
 
 
 # NO MODIFICAR - INICIO
