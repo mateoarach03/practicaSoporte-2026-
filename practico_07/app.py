@@ -1,6 +1,12 @@
 """Capa de presentacion del TP7: gestion de socios con Flask."""
 
 import os
+import sys
+
+# Agrega la raiz del repositorio al path para poder importar las capas
+# anteriores (practico_05, practico_06) al ejecutar el archivo directamente:
+#   python practico_07/app.py
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from flask import (
     Flask,
