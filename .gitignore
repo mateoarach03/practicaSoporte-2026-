@@ -101,3 +101,8 @@ ENV/
 .mypy_cache/
 
 .idea
+# Local Pi runtime state
+.atl/
+# SQLite databases
+*.db
+*.sqlite3

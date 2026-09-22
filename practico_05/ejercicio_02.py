@@ -9,8 +9,8 @@ from typing import List, Optional
 
 class DatosSocio():
 
-    def __init__(self):
-        self.engine = create_engine('sqlite:///:memory:')
+    def __init__(self, db_url: str = 'sqlite:///:memory:'):
+        self.engine = create_engine(db_url)
         Base.metadata.create_all(self.engine)
         Session = sessionmaker(bind=self.engine)
         self.session = Session()

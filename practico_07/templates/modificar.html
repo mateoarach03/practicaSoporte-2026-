@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Modificar socio - TP7</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 2rem; color: #222; }
+        h1 { margin-bottom: 1rem; }
+        form.socio { max-width: 420px; }
+        form.socio p { margin-bottom: 0.75rem; }
+        label { display: block; font-weight: bold; margin-bottom: 0.25rem; }
+        input { width: 100%; padding: 0.4rem; border: 1px solid #bbb; border-radius: 4px; }
+        .botones { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        a.boton, button {
+            display: inline-block; padding: 0.4rem 0.9rem; border: 1px solid #888;
+            border-radius: 4px; background: #fafafa; color: #222; text-decoration: none;
+            cursor: pointer; font-size: 0.95rem;
+        }
+        a.boton:hover, button:hover { background: #eee; }
+        ul.flashes { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+        ul.flashes li { padding: 0.5rem 0.75rem; border-radius: 4px; margin-bottom: 0.4rem; }
+        ul.flashes li.error { background: #fdecea; color: #8a1f11; border: 1px solid #f5c6cb; }
+        ul.flashes li.success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; }
+    </style>
+</head>
+<body>
+    <h1>Modificar socio</h1>
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+        {% if mensajes %}
+        <ul class="flashes">
+            {% for categoria, mensaje in mensajes %}
+            <li class="{{ categoria }}">{{ mensaje }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form class="socio" method="post" action="{{ url_for('modificar_socio', id_socio=id_socio) }}">
+        <p>
+            <label for="dni">DNI</label>
+            <input type="number" id="dni" name="dni" value="{{ dni }}">
+        </p>
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" value="{{ nombre }}">
+        </p>
+        <p>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" value="{{ apellido }}">
+        </p>
+        <div class="botones">
+            <button type="submit">Aceptar</button>
+            <a class="boton" href="{{ url_for('index') }}">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Socios - TP7</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 2rem; color: #222; }
+        h1 { margin-bottom: 1rem; }
+        table { border-collapse: collapse; width: 100%; max-width: 900px; }
+        th, td { border: 1px solid #ccc; padding: 0.5rem 0.75rem; text-align: left; }
+        th { background: #f0f0f0; }
+        form { display: inline; }
+        .acciones { display: flex; gap: 0.5rem; align-items: center; }
+        a.boton, button {
+            display: inline-block; padding: 0.35rem 0.75rem; border: 1px solid #888;
+            border-radius: 4px; background: #fafafa; color: #222; text-decoration: none;
+            cursor: pointer; font-size: 0.9rem;
+        }
+        a.boton:hover, button:hover { background: #eee; }
+        ul.flashes { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+        ul.flashes li { padding: 0.5rem 0.75rem; border-radius: 4px; margin-bottom: 0.4rem; }
+        ul.flashes li.error { background: #fdecea; color: #8a1f11; border: 1px solid #f5c6cb; }
+        ul.flashes li.success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; }
+    </style>
+</head>
+<body>
+    <h1>Socios</h1>
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+        {% if mensajes %}
+        <ul class="flashes">
+            {% for categoria, mensaje in mensajes %}
+            <li class="{{ categoria }}">{{ mensaje }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <p><a class="boton" href="{{ url_for('alta_socio') }}">Alta</a></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for socio in socios %}
+            <tr>
+                <td>{{ socio.id }}</td>
+                <td>{{ socio.dni }}</td>
+                <td>{{ socio.nombre }}</td>
+                <td>{{ socio.apellido }}</td>
+                <td>
+                    <div class="acciones">
+                        <a class="boton" href="{{ url_for('modificar_socio', id_socio=socio.id) }}">Modificar</a>
+                        <form method="post" action="{{ url_for('baja_socio', id_socio=socio.id) }}">
+                            <button type="submit">Baja</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
